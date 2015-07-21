@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'thin'
-gem "mechanize", '2.6.0'
+gem "mechanize"
 gem "octokit"
 gem 'foreman'
-
