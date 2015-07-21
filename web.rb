@@ -10,6 +10,9 @@ load "reading_vimrc.rb"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
+# Disable only serving localhosh in development mode
+set :bind, '0.0.0.0'
+
 get '/' do
 	"Hello, world"
 end
