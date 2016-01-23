@@ -1,15 +1,15 @@
 FROM ruby:latest
-MAINTAINER zchee <zcheeee@gmail.com>
+MAINTAINER zchee <k@zchee.io>
 
 WORKDIR /usr/src/app
 
-RUN bundle config --global jobs 8
-COPY Gemfile /usr/src/app/
-RUN bundle install
+COPY Gemfile Gemfile.lock /usr/src/app/
+RUN bundle config build.nokogiri --use-system-libraries \
+	&& bundle install --jobs $(nproc)
 
 COPY . /usr/src/app
-RUN mkdir /usr/src/app/log
-RUN touch /usr/src/app/log/development.log
+RUN mkdir /usr/src/app/log \
+	&& touch /usr/src/app/log/development.log
 
 EXPOSE 80
 CMD ["/usr/local/bundle/bin/foreman", "start", "-d","/usr/src/app"]
