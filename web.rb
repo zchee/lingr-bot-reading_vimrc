@@ -25,8 +25,9 @@ def owner?(name)
 end
 
 
-def last_commit_hash(url)
-	Octokit.list_commits(Octokit::Repository.from_url(url)).first['sha']
+def last_commit_hash(url, name)
+  repo = url.gsub("https:\/\/github\.com\/", "").gsub(/\/blob\/(.*)/, "")
+	Octokit.commits(repo).first['sha']
 end
 
 def get_yaml(url)
@@ -322,5 +323,4 @@ post '/reading_vimrc' do
 	}
 	return ""
 end
-
 
