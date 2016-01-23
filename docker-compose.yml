@@ -1,4 +1,12 @@
 bot:
+  container_name: reading_vimrc
+  build: .
+  env_file:
+    - .env
+  restart: always
+
+dev:
+  container_name: reading_vimrc_dev
   build: .
   env_file:
     - .env
